@@ -42,10 +42,10 @@ def get_stack_arrangement(data):
 
 def move_containers(stacks, mover, num_to_move, origin, destination):
     for move in range(num_to_move):
-        if mover == 9000:
+        if mover == 9000:  # Part 1
             container = stacks[origin].pop(0)
             stacks[destination].insert(0, container)  # push
-        else:
+        else:  # Part 2
             container = stacks[origin][:num_to_move]  # extract all containers to move
             stacks[origin] = stacks[origin][num_to_move:]  # remove containers from the stack
             stacks[destination] = container + stacks[destination]
@@ -63,6 +63,7 @@ def get_message(moves, stacks, mover):
         starting_stack = int(instructions[3]) - 1
         dest_stack = int(instructions[5]) - 1
         stacks = move_containers(stacks, mover, num_containers, starting_stack, dest_stack)
+
     for stack in stacks:
         message += stack[0]
     return message
